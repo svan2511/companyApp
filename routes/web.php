@@ -34,3 +34,7 @@ Route::group(['middleware' => ['auth:admin','preventBackHistory'],'prefix'=>'adm
 
 });
 
+Route::get('/',function(){
+
+    return redirect('admin/login');
+});
