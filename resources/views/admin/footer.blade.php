@@ -59,12 +59,32 @@
   });
  $(document).ready(function(){
 $('.custom-lable-image').bind('change' , show_image_name_on_lable); 
+$('.updtuserApp').bind('click' , update_userApps); 
  });
 
 function show_image_name_on_lable()
 {
   let imgText = document.getElementById(event.target.id).files[0].name;
 	  $('.custom-file-label').text(imgText);
+}
+function update_userApps() {
+  $(this).attr('value', 'Please Wait Loading.......');
+  $.ajax({
+            type: "POST",
+            url: "{{url('admin/update_user_apps')}}",
+            data: {
+              "user": $(this).data('user'),
+              "app":$(this).data('app'),
+              _token: '{{csrf_token()}}'
+            },
+            success: function(ajax_response) {
+				ajax_response = JSON.parse(JSON.stringify(ajax_response));
+				if(ajax_response.success) {
+          window.location.href = '/admin/users/'+ajax_response.user;
+			}
+    }
+			
+	});
 }
 
 

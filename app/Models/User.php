@@ -6,7 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -21,7 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'phone',
+        'refer_by',
+        'refrel_code',
+        'mac'
     ];
 
     /**
@@ -45,6 +49,7 @@ class User extends Authenticatable
 
     public function apps()
     {
-        return $this->belongsToMany(App::class);
+        return $this->belongsToMany(App::class)->withPivot('download_at');
     }
+  
 }

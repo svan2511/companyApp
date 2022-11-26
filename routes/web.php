@@ -3,8 +3,10 @@
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AppController;
 use App\Http\Controllers\admin\CategoryController;
-use App\Http\Controllers\front\UserController;
+use App\Http\Controllers\admin\UserController;
 use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,13 +25,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('admin/login', [ AdminController::class , 'login' ])->name('login')->middleware('noBackLogin');
 Route::post('admin/auth', [ AdminController::class , 'auth' ]);
 Route::get('admin/logout', [ AdminController::class , 'logout' ]);
-Route::group(['middleware' => ['auth','preventBackHistory'],'prefix'=>'admin'], function()
+Route::group(['middleware' => ['auth:admin','preventBackHistory'],'prefix'=>'admin'], function()
 {
     Route::get('dashboard', [ AdminController::class , 'index' ]);
     Route::resource('apps', AppController::class );
     Route::resource('users', UserController::class );
+    Route::post('update_user_apps',[UserController::class, 'updateUserApps']);
 
 });
-
-
 

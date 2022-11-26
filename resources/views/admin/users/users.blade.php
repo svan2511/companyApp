@@ -44,7 +44,7 @@
                     <th>Name</th>
                     <th>Image</th>
                     <th>email</th>
-                    <th>Phone</th>
+                    <th>Mac Address</th>
                     <th>Actions</th>
                     
                   </tr>
@@ -62,7 +62,7 @@
                     @endif
                     </td>
                     <td>{{ $single->email  }}</td>
-                    <td>{{ $single->phone }}</td>
+                    <td>{{ $single->mac }}</td>
                     
 						<td><a href="{{route('users.show' , $single )}}"><button type="button" class="btn btn-success"><i class="fas fa-solid fa-eye"></i></button></a>
 	

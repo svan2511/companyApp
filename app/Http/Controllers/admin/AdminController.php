@@ -27,9 +27,8 @@ class AdminController extends Controller
 
     public function auth(AdminRequest $request)
     {
-        $data = $request->validated();
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password,'role'=>1]))
-        {
+        $request->validated();
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect('admin/dashboard');
         }
         $request->session()->flash('errorMsg','Invalid Credentials');
@@ -37,7 +36,7 @@ class AdminController extends Controller
     }
 
     public function logout(Request $request) {
-        Auth::logout();
+        Auth::guard('admin')->logout();
         $request->session()->flash('logoutMsg','Logout Successfully');
         return redirect('admin/login');
       
