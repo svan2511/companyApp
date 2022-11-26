@@ -11,7 +11,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('admin_assets/dist/img/my-prof-min.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('storage/admin_assets/users/profile.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">Welcome Admin</a><a href="{{url('admin/logout')}}" class="btn btn-block btn-success btn-sm">LOGOUT</a>
