@@ -29,6 +29,11 @@ Route::post('login',[UserController::class,'login']);
 Route::post('register',[UserController::class,'register']);
 Route::get('tset' , function()
 {
-return 'test';
+    return response()->json([
+        'success' => true,
+        'message' => 'User Profile',
+       
+        ]
+        , 200); 
 });
 
