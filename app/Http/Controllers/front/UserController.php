@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
@@ -20,9 +21,10 @@ class UserController extends Controller
     {
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password ])) { 
            $userData = new UserResource(Auth::user());
+          
             return response()->json([
             'success' => true,
-            'message' => 'Loggedin successfully',
+            'message' => 'Logged in successfully',
             'user' => $userData], 
             200); 
         } 
@@ -59,7 +61,7 @@ class UserController extends Controller
             'success' => true,
             'message' => 'User Register Successfull',
             ]
-            , 200); 
+            , Response::HTTP_CREATED); 
     }
     public function allApps(Request $request)
     {

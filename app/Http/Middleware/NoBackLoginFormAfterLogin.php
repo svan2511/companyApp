@@ -17,9 +17,10 @@ class NoBackLoginFormAfterLogin
     public function handle(Request $request, Closure $next)
     {
     
-        if (Auth::guard('web')->check()) {
+        if (Auth::guard('admin')->check()) { 
             return redirect()->back(); 
         }
+    
         return $next($request);
     }
 }

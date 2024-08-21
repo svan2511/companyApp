@@ -20,13 +20,13 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('profile',[UserController::class , 'userProfile']); 
-    Route::get('apps',[UserController::class , 'allApps']);
-    Route::get('app/{id}',[UserController::class , 'getSingleApp']);
-    Route::get('myApp',[UserController::class , 'allUserApps']);  
+    Route::get('profile',[UserController::class , 'userProfile'])->name('user.profile'); 
+    Route::get('apps',[UserController::class , 'allApps'])->name('apps');
+    Route::get('app/{id}',[UserController::class , 'getSingleApp'])->name('app.details');
+    Route::get('myApp',[UserController::class , 'allUserApps'])->name('user.appa');  
 });
-Route::post('login',[UserController::class,'login']);
-Route::post('register',[UserController::class,'register']);
+Route::post('login',[UserController::class,'login'])->name('user.login');
+Route::post('register',[UserController::class,'register'])->name('user.register');
 Route::get('tset' , function()
 {
     return response()->json([
